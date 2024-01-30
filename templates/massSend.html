@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mass Send</title>
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/style.css') }}">
+    <link href='https://fonts.googleapis.com/css?family=Poppins' rel='stylesheet'>
+    <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
+    <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
+    <script type="text/javascript" src="{{ url_for('static', filename='script.js') }}">
+    </script>
+</head>
+<body>
+    <div class="home">
+         <a href="{{ url_for('submitLoading') }}"><img src="static/Logo_Claim_A4_RGB.png" /></a>
+        <hr/>
+    </div>
+    <div class="email-template">
+        <form name="emaildata" action="" method="post" enctype="multipart/form-data" onsubmit="return validation()">
+        <h1> Mass Email Send Template</h1>
+
+        <div class="content-template">
+            <p>Add <strong>CSV</strong> files here: </p>
+            <input type="text" name="file" placeholder="CSV file directory" required>
+            <input type="text" name="subject" placeholder="Subject" required>
+            <p>Type <b>'{}'</b> for different values.</p>
+            <textarea rows="20" cols="100" id="emailBody" name="content" placeholder="Enter content here" required></textarea>
+            <div class="button-container">
+                <div class="buttons">
+                    <input type="button" onclick="boldText('<b></b>')" value="Bold"/>
+                    <input type="button" onclick="italicText('<i></i>')" value="Italic"/>
+                    <input type="button" onclick="underlineText('<u></u>')" value="Underline"/>
+                    <input type="button" onclick="nextLine('<br>')" value="Next Line"/>
+                </div>
+            </div>
+            <p>Number of emails per chunks: </p>
+            <select name="num-chunks">
+                <option value="20">20</option>
+                <option value="30">30</option>
+                <option value="40">40</option>
+                <option value="50">50</option>
+            </select>
+            <p>Time interval per chunks: </p>
+            <select name="time-interval">
+                <option value="30">30 seconds</option>
+                <option value="60">60 seconds</option>
+                <option value="90">90 seconds</option>
+            </select>
+            <p>Add Attachment here: (if any)</p>
+            <input type="text" name="attachment" placeholder="Attachment file directory" >
+
+        </div>
+            <div class="submit-form">
+                <input type="submit" name="submitType" id="submit" onclick="validation()" value="Submit"/>
+
+            </div>
+            <div class="save-form">
+                <input type="submit" name="submitType" value="Save" onclick="openSavePopup()"/>
+            </div>
+<!--        <p id="result"></p>-->
+        </form>
+
+    </div>
+    <div class="popup" id="popup">
+        <ion-icon name="checkmark-circle-outline"></ion-icon>
+        <h2>Success</h2>
+        <p>Your emails will be sent accordingly.</p>
+        <button type="button" onclick="closePopup()">OK</button>
+    </div>
+    <div class="savepopup" id="savepopup">
+        <ion-icon name="cloud-done-outline"></ion-icon>
+        <h2>Email Saved</h2>
+        <p>Your emails will be saved at your "Drafts" section.</p>
+    </div>
+    <div class="errorpopup" id="errorpopup">
+        <ion-icon name="close-circle-outline"></ion-icon>
+        <h2>Error</h2>
+        <p id="result"></p>
+        <button type="button" onclick="closeErrorPopup()">OK</button>
+    </div>
+    </body>
+</html>

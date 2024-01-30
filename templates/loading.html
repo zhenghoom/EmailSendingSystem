@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/loading.css') }}">
+    <link href='https://fonts.googleapis.com/css?family=Poppins' rel='stylesheet'>
+    <title>Loading</title>
+    <script>
+        var link = document.createElement('link');
+        link.setAttribute('href', 'https://fonts.googleapis.com/css?family=Poppins');
+        link.setAttribute('rel', 'stylesheet');
+        var seconds=4;
+        function cooldown(){
+            seconds -=1;
+            document.getElementById("cooldown-display").innerHTML=
+            "<span style='color: #00b580; font-size:30px; font-family:Poppins'><b>PROCESS COMPLETE!</b> </br></br> Redirecting in "+seconds+" seconds...</span>";
+        }
+        setInterval(cooldown,1000);
+    </script>
+</head>
+<body>
+    <span class="form-loader"><span class="form-loader-inner"></span></span>
+    <div id="cooldown-display"></div>
+</body>
+</html>

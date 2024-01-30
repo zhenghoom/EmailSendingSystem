@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Excel PIR Template</title>
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/style.css') }}">
+    <link href='https://fonts.googleapis.com/css?family=Poppins' rel='stylesheet'>
+    <script type="text/javascript" src="{{ url_for('static', filename='script.js') }}">
+    </script>
+</head>
+<body>
+    <div class="home">
+        <a href="{{ url_for('submitLoading') }}"><img src="static/Logo_Claim_A4_RGB.png" /></a>
+        <hr/>
+    </div>
+    <div class="email-template">
+        <form name="emaildata" action="" method="post" enctype="multipart/form-data">
+        <h1> Excel PIR Template</h1>
+
+        <div class="content-template">
+            <p>Add <strong>Excel</strong> file here: </p>
+            <input type="text" name="file" placeholder="Excel folder" required>
+            <p>Add reference sheet and main sheet: </p>
+            <input type="text" name="reference" placeholder="Reference sheet name" required>
+            <input type="text" name="main" placeholder="Main sheet name" required>
+            <p>Enter the vendor name: </p>
+<!--            <textarea rows="20" cols="100" id="emailBody" name="content" placeholder="Enter content here" required></textarea>-->
+            <input type="text" name="vendor" placeholder="Vendor name" required>
+        </div>
+            <div class = submit-form>
+                <input type="submit" id="submit" onclick="return confirm('Are you sure? This action cannot be undone!')" value="Submit"/>
+            </div>
+        </form>
+
+    </div>
+
+</body>
+</html>

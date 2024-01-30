@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" >
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Landing Page</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/style.css') }}">
+    <link href='https://fonts.googleapis.com/css?family=Poppins' rel='stylesheet'></head>
+<body>
+    <section class = 'header'>
+        <nav>
+            <img src="static/Logo_Claim_A4_RGB.png" />
+
+            <div class="nav-links">
+                <ul>
+                    <li><a href="{{ url_for('massSend') }}">Mass Send </a></li>
+                    <li><a href="{{ url_for('excelTemp') }}">Excel Template </a></li>
+                </ul>
+            </div>
+
+        </nav>
+
+        <hr/>
+        </section>
+
+    <div class="text-box">
+        <h1>Emails Sending System</h1>
+        <p class="typed">Sending emails have never been easier with automation....</p>
+<!--        <a href="{{ url_for('massSend') }}" class="main-btn"> Start sending! </a>-->
+    </div>
+    <div class="loader-wrapper">
+        <span class="loader"><span class="loader-inner"></span></span>
+    </div>
+    <script>
+        $(window).on("load", function() {
+            $(".loader-wrapper").fadeOut(1500);
+        });
+    </script>
+</body>
+</html>
