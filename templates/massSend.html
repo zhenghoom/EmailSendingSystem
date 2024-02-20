@@ -23,7 +23,7 @@
         <div class="content-template">
             <p>Add <strong>CSV</strong> files here: </p>
             <input type="text" name="file" placeholder="CSV file directory" required>
-            <input type="text" name="subject" placeholder="Subject" required>
+<!--            <input type="text" name="subject" placeholder="Subject" required>-->
             <p>Type <b>'{}'</b> for different values.</p>
             <textarea rows="20" cols="100" id="emailBody" name="content" placeholder="Enter content here" required></textarea>
             <div class="button-container">
@@ -47,8 +47,8 @@
                 <option value="60">60 seconds</option>
                 <option value="90">90 seconds</option>
             </select>
-            <p>Add Attachment here: (if any)</p>
-            <input type="text" name="attachment" placeholder="Attachment file directory" >
+<!--            <p>Add Attachment here: (if any)</p>-->
+<!--            <input type="text" name="attachment" placeholder="Attachment file directory" >-->
 
         </div>
             <div class="submit-form">
@@ -63,7 +63,16 @@
 
     </div>
     <div class="popup" id="popup">
-        <ion-icon name="checkmark-circle-outline"></ion-icon>
+        <script src="https://cdn.lordicon.com/lordicon.js"></script>
+        <lord-icon
+            src="https://cdn.lordicon.com/oqdmuxru.json"
+            trigger="loop"
+            delay="1500"
+            state="morph-check-in-1"
+            style="width:250px;height:250px"
+            colors="primary:#00A97A">
+        </lord-icon>
+<!--        <ion-icon name="checkmark-circle-outline"></ion-icon>-->
         <h2>Success</h2>
         <p>Your emails will be sent accordingly.</p>
         <button type="button" onclick="closePopup()">OK</button>
@@ -74,7 +83,14 @@
         <p>Your emails will be saved at your "Drafts" section.</p>
     </div>
     <div class="errorpopup" id="errorpopup">
-        <ion-icon name="close-circle-outline"></ion-icon>
+        <script src="https://cdn.lordicon.com/lordicon.js"></script>
+        <lord-icon
+            src="https://cdn.lordicon.com/ygvjgdmk.json"
+            trigger="loop"
+            delay="1500"
+            style="width:250px;height:250px"
+            colors="primary:red">
+        </lord-icon>
         <h2>Error</h2>
         <p id="result"></p>
         <button type="button" onclick="closeErrorPopup()">OK</button>

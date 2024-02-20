@@ -6,6 +6,8 @@
     <title>Excel PIR Template</title>
     <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/style.css') }}">
     <link href='https://fonts.googleapis.com/css?family=Poppins' rel='stylesheet'>
+    <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
+    <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
     <script type="text/javascript" src="{{ url_for('static', filename='script.js') }}">
     </script>
 </head>
@@ -15,24 +17,89 @@
         <hr/>
     </div>
     <div class="email-template">
-        <form name="emaildata" action="" method="post" enctype="multipart/form-data">
+        <form name="exceldata" action="" method="post" enctype="multipart/form-data" onsubmit="return excelValidation()">
         <h1> Excel PIR Template</h1>
 
         <div class="content-template">
             <p>Add <strong>Excel</strong> file here: </p>
-            <input type="text" name="file" placeholder="Excel folder" required>
+            <input type="text" name="excelfile" placeholder="Excel folder" required>
             <p>Add reference sheet and main sheet: </p>
             <input type="text" name="reference" placeholder="Reference sheet name" required>
             <input type="text" name="main" placeholder="Main sheet name" required>
-            <p>Enter the vendor name: </p>
+            <p>Enter the vendor code: </p>
 <!--            <textarea rows="20" cols="100" id="emailBody" name="content" placeholder="Enter content here" required></textarea>-->
-            <input type="text" name="vendor" placeholder="Vendor name" required>
+            <input type="number" name="vendor" placeholder="Vendor code" required>
+            <p>Enter the SAP Material No: </p>
+            <input type="text" name="matno" placeholder="Material No." required>
+            <p>Enter the 1st quotation link: </p>
+            <input type="text" name="quolink1" placeholder="1st Quotation Link" required>
+            <p>Enter the 2nd quotation link(optional): </p>
+            <input type="text" name="quolink2" placeholder="2nd Quotation Link">
+            <p>Enter the plant: </p>
+            <select name="plant">
+                <option value="MY01">MY01</option>
+                <option value="MY02">MY02</option>
+                <option value="MY03">MY03</option>
+                <option value="MY05">MY05</option>
+                <option value="MY10">MY10</option>
+            </select>
+            <p>Enter the vendor material no(optional): </p>
+            <input type="text" name="venmatno" placeholder="Vendor Material No.">
+            <p>Enter the order unit: </p>
+            <input type="text" name="orderunit" placeholder="Order Unit" required>
+            <p>Enter the lead time: </p>
+            <input type="number" name="leadtime" placeholder="Lead Time" required>
+            <p>Select the purchasing group: </p>
+            <select name="purchaseGroup">
+                <option value="C12">C12</option>
+                <option value="I40">I40</option>
+                <option value="I42">I42</option>
+                <option value="M6E">M6E</option>
+                <option value="N04">N04</option>
+                <option value="P35">P35</option>
+                <option value="PT2">PT2</option>
+            </select>
+            <p>Enter the minimum qty (MOQ): </p>
+            <input type="number" name="moq" placeholder="Minimum qty" required>
+            <p>Enter the net price: </p>
+            <input type="number" name="netprice" placeholder="Net Price" required>
+
+
         </div>
             <div class = submit-form>
-                <input type="submit" id="submit" onclick="return confirm('Are you sure? This action cannot be undone!')" value="Submit"/>
+                <input type="submit" id="submit" onclick="excelValidation()" value="Submit"/>
             </div>
         </form>
 
+    </div>
+    <div class="popup" id="popup">
+        <script src="https://cdn.lordicon.com/lordicon.js"></script>
+        <lord-icon
+            src="https://cdn.lordicon.com/oqdmuxru.json"
+            trigger="loop"
+            delay="1500"
+            state="morph-check-in-1"
+            style="width:250px;height:250px"
+            colors="primary:#00A97A">
+        </lord-icon>
+<!--        <ion-icon name="checkmark-circle-outline"></ion-icon>-->
+        <h2>Success</h2>
+        <p>Your request has been submitted.</p>
+        <button type="button" onclick="closePopup()">OK</button>
+    </div>
+    <div class="errorpopup" id="errorpopup">
+        <script src="https://cdn.lordicon.com/lordicon.js"></script>
+        <lord-icon
+            src="https://cdn.lordicon.com/ygvjgdmk.json"
+            trigger="loop"
+            delay="1500"
+            style="width:250px;height:250px"
+            colors="primary:red">
+        </lord-icon>
+<!--        <ion-icon name="close-circle-outline"></ion-icon>-->
+        <h2>Error</h2>
+        <p id="result"></p>
+        <button type="button" onclick="closeErrorPopup()">OK</button>
     </div>
 
 </body>
