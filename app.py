@@ -35,20 +35,29 @@ def saveValue():
     if request.form['submitType'] == 'Submit':
         for chunk in chunks:
             for name, email, subject, attachment in chunk:
-                message = outlook.CreateItem(0)
-                # message.Display()
-                message.To = email
-                message.Subject = subject
-                #Get signature
-                # message.GetInspector
-                index = message.HTMLbody.find('>', message.HTMLbody.find('<body'))
-                message.HTMLBody = message.HTMLbody[:index + 1] + template.format(name)
+                if attachment == '':
+                    message = outlook.CreateItem(0)
+                    message.To = email
+                    message.Subject = subject
+                    index = message.HTMLbody.find('>', message.HTMLbody.find('<body'))
+                    message.HTMLBody = message.HTMLbody[:index + 1] + template.format(name)
+                    message.Send()
+                else:
+                    message = outlook.CreateItem(0)
+                    # message.Display()
+                    message.To = email
+                    message.Subject = subject
+                    #Get signature
+                    # message.GetInspector
+                    index = message.HTMLbody.find('>', message.HTMLbody.find('<body'))
+                    message.HTMLBody = message.HTMLbody[:index + 1] + template.format(name)
 
-                attachments = attachment.split(', ')
-                for i in range(len(attachments)):
-                    message.Attachments.Add(attachments[i])
-                message.Send()
+                    attachments = attachment.split(', ')
+                    for i in range(len(attachments)):
+                        message.Attachments.Add(attachments[i])
+                    message.Send()
             sleep(int(time))
+
         return render_template('loading.html'), {"Refresh": "4; url=mass_send"}
 
     elif request.form['submitType'] == 'Save':
